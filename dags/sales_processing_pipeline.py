@@ -114,7 +114,7 @@ with DAG(
     load_to_bq = GCSToBigQueryOperator(
         task_id="load_bq",
 
-        bucket="sales-data-bucket",
+        bucket="airflow-pysaprk-dags",
 
         source_objects=[
             "output/sales_count_{{ ti.xcom_pull(task_ids='get_process_date') }}/*.csv"
@@ -136,4 +136,4 @@ with DAG(
 
 
     # DAG dependencies
-    get_date >> create_cluster >> run_spark_job >> [delete_cluster >> load_to_bq]
+    get_date >> create_cluster >> run_spark_job >> [delete_cluster , load_to_bq]
