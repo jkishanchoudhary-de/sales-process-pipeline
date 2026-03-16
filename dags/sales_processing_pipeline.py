@@ -136,4 +136,4 @@ with DAG(
 
 
     # DAG dependencies
-    get_date >> create_cluster >> run_spark_job >> delete_cluster >> load_to_bq
+    get_date >> create_cluster >> run_spark_job >> [delete_cluster >> load_to_bq]
